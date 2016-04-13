@@ -1302,13 +1302,13 @@ public class DateAxis extends ValueAxis implements Cloneable, Serializable
         DateFormat f7 = new SimpleDateFormat("yyyy", locale);
         if(isPersian(locale))
         {
-            f1 = SimpleJalaliFormat();
-            f2 =  SimpleJalaliFormat();
-            f3 =  SimpleJalaliFormat();
-            f4 = SimpleJalaliFormat();
-            f5 = SimpleJalaliFormat();
-            f6 = SimpleJalaliFormat();
-            f7 = SimpleJalaliFormat();
+            f1 = simpleJalaliFormat();
+            f2 =  simpleJalaliFormat();
+            f3 =  simpleJalaliFormat();
+            f4 = simpleJalaliFormat();
+            f5 = simpleJalaliFormat();
+            f6 = simpleJalaliFormat();
+            f7 = simpleJalaliFormat();
         }
 
         f1.setTimeZone(zone);
@@ -1377,15 +1377,15 @@ public class DateAxis extends ValueAxis implements Cloneable, Serializable
 
     }
     
-    private static boolean isPersian(Locale locale)
+    public static boolean isPersian(Locale locale)
     {
         return "fa".equals(locale.getLanguage());
     }
 
-    private static SimpleDateFormat SimpleJalaliFormat()
+    public static SimpleDateFormat simpleJalaliFormat()
     {
         return new SimpleDateFormat() {// "YY-MM-DD"
-            @Override
+            
             public StringBuffer format(Date date, StringBuffer toAppendTo, FieldPosition pos) throws NullPointerException
             {
                 JalaliCalendar jc = new JalaliCalendar();

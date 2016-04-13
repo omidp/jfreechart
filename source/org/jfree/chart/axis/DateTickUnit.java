@@ -60,6 +60,7 @@ import java.text.DateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.TimeZone;
+import java.util.Locale;
 
 import org.jfree.util.ObjectUtilities;
 
@@ -94,6 +95,13 @@ public class DateTickUnit extends TickUnit implements Serializable {
 
     /** The date formatter. */
     private DateFormat formatter;
+    
+    private Locale locale;
+    
+    public DateTickUnit(DateTickUnitType unitType, int multiple, Locale locale) {
+        this(unitType, multiple, DateFormat.getDateInstance(DateFormat.SHORT));
+        this.locale = locale;
+    }
 
     /**
      * Creates a new date tick unit.
@@ -217,7 +225,10 @@ public class DateTickUnit extends TickUnit implements Serializable {
      * @return The formatted date.
      */
     public String dateToString(Date date) {
-        return this.formatter.format(date);
+        if(locale != null && DateAxis.isPersian(locale))
+            return DateAxis.simpleJalaliFormat().format(date);
+        else
+            return this.formatter.format(date);
     }
 
     /**
