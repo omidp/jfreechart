@@ -1390,7 +1390,9 @@ public class DateAxis extends ValueAxis implements Cloneable, Serializable
             {
                 JalaliCalendar jc = new JalaliCalendar();
                 jc.setTime(date);
-                return new StringBuffer(jc.get(JalaliCalendar.YEAR) + "/" + jc.get(JalaliCalendar.MONTH) + 1 + "/"
+                String year = String.valueOf(jc.get(JalaliCalendar.YEAR));
+                int month = jc.get(JalaliCalendar.MONTH)+1;
+                return new StringBuffer(year.substring(year.length()-2) + "/" + month + "/"
                         + jc.get(JalaliCalendar.DATE));
             }
         };
